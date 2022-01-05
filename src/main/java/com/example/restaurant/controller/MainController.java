@@ -111,10 +111,38 @@ public class MainController {
     public String reviewUpdate(@RequestParam Map<String,String> formdata, HttpServletRequest request){
         return reviewController.reviewUpdate(formdata, request);
     }
+
+    // 레스토랑 리스트 뿌려주며 입장
     @GetMapping("/ownerPage")
-    public String ownerPage(){ return "user/ownerMyPage"; }
+    public String ownerPage(HttpServletRequest request){
+//        String user_id = request.getParameter("user_id");
+        return controller.getRestaurantList(request);
+    }
     @GetMapping("/searchPage")
-    public String ownerSearch(){ return "user/ownerSearch"; }
-    @GetMapping("/searchRestaurant")
-    public String searchRestaurant(){ return "user/test"; }
+    public String ownerSearch(){ return "user/test"; }
+
+    //---- 새로 추가됨 ----
+    @GetMapping("/settingRestaurant") // 검색페이지 -> 상세페이지
+    public String settingRestaurant(@RequestParam String restaurant_id, HttpServletRequest request){
+        System.out.println("식당아이디: " + restaurant_id);
+        System.out.println("요청 : " + request);
+
+        return controller.settingRestaurantForm(restaurant_id, request);
+    }
+
+    @GetMapping("/setMyRestaurant")
+    public String setMyRestaurant(HttpServletRequest request){
+//        String restaurant_id = request.getParameter("restaurant_id");
+//        String id = request.getParameter("user_id");
+//        System.out.println(restaurant_id + " : " + id);
+
+        return controller.setMyRestaurant(request);
+    }
+
+    @GetMapping("/ownerReserveCheck")
+    public String ownerReserveCheck(HttpServletRequest request){
+        String restaurant_id = request.getParameter("restaurant_id");
+        System.out.println("restaurant_id:"+restaurant_id);
+        return reserveController.ownerReserveCheck(request);
+    }
 }

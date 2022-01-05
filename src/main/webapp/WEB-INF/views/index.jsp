@@ -12,12 +12,22 @@
     <title>INDEX</title>
 </head>
 <body>
+<%--<%--%>
+<%--    session.setAttribute("log","apple");--%>
+<%--%>--%>
+
 <%
-    session.setAttribute("log","apple");
+    //String log = (String)session.getAttribute("id");
+//    String id = "banana";
+    String id = "brown";
+    session.setAttribute("log", id);
 %>
+
+// list 주려면 밑에 이거 꼭 있어야 함
+<c:set var="user_id" value="${sessionScope.log}"/>
 Index Page
-<input type="button" onclick="location.href='/list'" value="리뷰보러가기">
-<input type="button" onclick="location.href='ownerPage'" value="사장님페이지">
+<input type="button" onclick="location.href='list'" value="리뷰보러가기">
+<input type="button" onclick="location.href='ownerPage?user_id=${user_id}'" value="사장님페이지">
 <div class="wrap">
     <header>
         <h1>INDEX</h1>

@@ -1,3 +1,4 @@
+<%@ page import="org.springframework.web.context.request.SessionScope" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!doctype html>
@@ -30,6 +31,7 @@
         </thead>
         <tbody>
         <c:forEach var="review" items="${list}">
+
             <%--                <tr method="post" onclick="location.href='/v1/review/{<c:out value="${review.getNo()}"/>}'">--%>
             <tr method="post" onclick="location.href='reviewView?no=<c:out value="${review.getNo()}"/>'">
                 <td><c:out value="${review.getNo()}"/></td>
@@ -37,7 +39,7 @@
                 <td><c:out value="${review.getUser_id()}"/></td>
                 <td><c:out value="${review.getLikes()}"/></td>
                 <td><c:out value="${review.getView()}"/></td>
-<%--                <td><c:out value="${review.getModified_at()}"/></td>--%>
+                <td><c:out value="${review.getModified_at()}"/></td>
             </tr>
         </c:forEach>
         </tbody>

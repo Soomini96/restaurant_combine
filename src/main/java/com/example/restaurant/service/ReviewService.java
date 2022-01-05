@@ -22,6 +22,7 @@ public class ReviewService {
     }
 
     // 2. Read
+    @Transactional
     public Review getReview(int no){
         Review review = null;
         review = repo.findById(no).orElseThrow(
